@@ -6,6 +6,7 @@ type useTimeType = {
   onHourChange: (hour: number) => void;
   onMinuteChange: (minute: number) => void;
 };
+
 export const useTime = (initialHour: number, initialMinute: number): useTimeType => {
   const [hour, setHour] = useState<number>(initialHour);
   const [minute, setMinute] = useState<number>(initialMinute);

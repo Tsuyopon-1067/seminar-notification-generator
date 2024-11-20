@@ -35,48 +35,50 @@ export const TimeInput = ({ hour, minute, onHourChange, onMinuteChange }: TimeIn
   };
 
   return (
-    <div className="flex items-center gap-3">
-      開始時間
-      <div className="flex flex-col items-center gap-1">
-        <button
-          className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
-          onClick={() => adjustHour(1)}
-        >
-          ▲
-        </button>
-        <input
-          type="text"
-          value={hour.toString().padStart(2, '0')}
-          onChange={(e) => handleHourInput(e.target.value)}
-          className="w-12 text-center border rounded-md py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button
-          className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
-          onClick={() => adjustHour(-1)}
-        >
-          ▼
-        </button>
-      </div>
-      <span className="text-xl font-bold">:</span>
-      <div className="flex flex-col items-center gap-1">
-        <button
-          className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
-          onClick={() => adjustMinute(1)}
-        >
-          ▲
-        </button>
-        <input
-          type="text"
-          value={minute.toString().padStart(2, '0')}
-          onChange={(e) => handleMinuteInput(e.target.value)}
-          className="w-12 text-center border rounded-md py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button
-          className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
-          onClick={() => adjustMinute(-1)}
-        >
-          ▼
-        </button>
+    <div className={'w-64 mx-auto my-2'}>
+      <div className="flex items-center gap-3">
+        開始時間
+        <div className="flex flex-col items-center gap-1">
+          <button
+            className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
+            onClick={() => adjustHour(1)}
+          >
+            ▲
+          </button>
+          <input
+            type="text"
+            value={hour.toString().padStart(2, '0')}
+            onChange={(e) => handleHourInput(e.target.value)}
+            className="w-12 text-center border rounded-md py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
+            onClick={() => adjustHour(-1)}
+          >
+            ▼
+          </button>
+        </div>
+        <span className="text-xl font-bold">:</span>
+        <div className="flex flex-col items-center gap-1">
+          <button
+            className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
+            onClick={() => adjustMinute(1)}
+          >
+            ▲
+          </button>
+          <input
+            type="text"
+            value={minute.toString().padStart(2, '0')}
+            onChange={(e) => handleMinuteInput(e.target.value)}
+            className="w-12 text-center border rounded-md py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
+            onClick={() => adjustMinute(-1)}
+          >
+            ▼
+          </button>
+        </div>
       </div>
     </div>
   );

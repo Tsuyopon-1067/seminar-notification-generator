@@ -16,7 +16,7 @@ type Preset = {
   people: People;
 };
 
-type Presets = Preset[];
+export type Presets = Preset[];
 
 export type usePresetType = {
   presets: Presets;
