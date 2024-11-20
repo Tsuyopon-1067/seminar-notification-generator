@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-type PresetButtonProps = {
+export type PresetButtonProps = {
   name: string;
   onDelete?: () => void;
   onEditName?: (newName: string) => void;

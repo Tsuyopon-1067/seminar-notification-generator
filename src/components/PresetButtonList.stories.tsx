@@ -14,73 +14,64 @@ const meta: Meta<typeof PresetButtonList> = {
 export default meta;
 type Story = StoryObj<typeof PresetButtonList>;
 
-const sampleNames = ['Preset 1', 'Preset 2', 'Preset 3', 'Custom Preset', 'My Favorite Settings'];
+const samplePresets = [
+  {
+    name: 'Preset 1',
+    onDelete: action('onDelete'),
+    onEditName: action('onEditName'),
+    setPreset: action('setPreset'),
+    currentPreset: '',
+  },
+  {
+    name: 'Preset 2',
+    onDelete: action('onDelete'),
+    onEditName: action('onEditName'),
+    setPreset: action('setPreset'),
+    currentPreset: '',
+  },
+  {
+    name: 'Preset 3',
+    onDelete: action('onDelete'),
+    onEditName: action('onEditName'),
+    setPreset: action('setPreset'),
+    currentPreset: '',
+  },
+];
 
 export const Default: Story = {
   args: {
-    names: sampleNames,
-    deletePreset: action('deletePreset'),
-    onEditName: action('onEditName'),
-    onSetPreset: action('onSetPreset'),
-    currentPreset: '',
+    presetButtonList: samplePresets,
+    onAdd: action('onAdd'),
   },
 };
 
 export const WithActivePreset: Story = {
   args: {
-    names: sampleNames,
-    deletePreset: action('deletePreset'),
-    onEditName: action('onEditName'),
-    onSetPreset: action('onSetPreset'),
-    currentPreset: 'Preset 2',
-  },
-};
-
-export const ReadOnly: Story = {
-  args: {
-    names: sampleNames,
-    currentPreset: 'Preset 1',
+    presetButtonList: samplePresets.map((preset) =>
+      preset.name === 'Preset 2' ? { ...preset, currentPreset: 'Preset 2' } : preset,
+    ),
+    onAdd: action('onAdd'),
   },
 };
 
 export const Empty: Story = {
   args: {
-    names: [],
-    deletePreset: action('deletePreset'),
-    onEditName: action('onEditName'),
-    onSetPreset: action('onSetPreset'),
+    presetButtonList: [],
+    onAdd: action('onAdd'),
   },
 };
 
-export const LongList: Story = {
+export const WithoutAddButton: Story = {
   args: {
-    names: [
-      ...sampleNames,
-      'Additional Preset 1',
-      'Additional Preset 2',
-      'Additional Preset 3',
-      'Additional Preset 4',
-      'Additional Preset 5',
-    ],
-    deletePreset: action('deletePreset'),
-    onEditName: action('onEditName'),
-    onSetPreset: action('onSetPreset'),
-    currentPreset: 'Additional Preset 3',
+    presetButtonList: samplePresets,
   },
 };
 
-export const WithLongNames: Story = {
+export const ReadOnly: Story = {
   args: {
-    names: [
-      'This is a very long preset name that might need special handling',
-      'Another long preset name for testing purposes',
-      'Yet another lengthy preset name to test the layout',
-      'Short name',
-      'Very very very long preset name that goes on and on',
-    ],
-    deletePreset: action('deletePreset'),
-    onEditName: action('onEditName'),
-    onSetPreset: action('onSetPreset'),
-    currentPreset: 'Short name',
+    presetButtonList: samplePresets.map((preset) => ({
+      name: preset.name,
+      currentPreset: preset.name === 'Preset 1' ? preset.name : '',
+    })),
   },
 };
