@@ -28,6 +28,7 @@ export type usePresetType = {
   addPreset: () => void;
   currentPreset: string;
   setCurrentPreset: (presetId: string) => void;
+  setPresets: (presets: Presets) => void;
 };
 
 export const usePresets = (storedPresets: Presets): usePresetType => {
@@ -82,5 +83,6 @@ export const usePresets = (storedPresets: Presets): usePresetType => {
     addPerson,
     currentPreset,
     setCurrentPreset,
+    setPresets,
   };
 };
