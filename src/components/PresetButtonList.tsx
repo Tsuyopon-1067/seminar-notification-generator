@@ -1,22 +1,29 @@
-import { PresetButton, PresetButtonProps } from './PresetButton';
+import { usePresetType } from '@/hooks/usePresets';
+import { PresetButton } from './PresetButton';
 
-type PresetButtonListProps = {
-  presetButtonList: PresetButtonProps[];
-  onAdd?: () => void;
-};
-
-export const PresetButtonList = ({ presetButtonList, onAdd }: PresetButtonListProps) => {
+export const PresetButtonList = (presets: usePresetType) => {
   return (
     <div className="flex flex-col gap-2 p-4">
-      {presetButtonList.length === 0 ? (
+      {presets.presets.length === 0 ? (
         <div className="text-gray-500 text-sm text-center py-4">No presets available</div>
       ) : (
-        presetButtonList.map((preset, index) => <PresetButton key={index} {...preset} />)
+        presets.presets.map((preset, index) => {
+          return (
+            <PresetButton
+              key={index}
+              name={preset.name}
+              editPresetName={(name: string) => presets.editPresetName(preset.id, name)}
+              onDelete={() => presets.deletePreset(preset.id)}
+              currentPreset={presets.currentPreset}
+              setPreset={() => presets.setCurrentPreset(preset.id)}
+            />
+          );
+        })
       )}
-      {onAdd && (
+      {presets.addPreset && (
         <button
-          onClick={onAdd}
-          className="mt-2 h-10 border-2 border-dashed border-gray-300 rounded-lg 
+          onClick={presets.addPreset}
+          className="mt-2 h-10 border-2 border-dashed border-gray-300 rounded-lg
                    hover:border-blue-500 hover:bg-blue-50 transition-all duration-200
                    flex items-center justify-center group"
         >
