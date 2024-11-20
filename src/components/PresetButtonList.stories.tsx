@@ -1,6 +1,6 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PresetButtonList } from './PresetButtonList';
-import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof PresetButtonList> = {
   title: 'Components/PresetButtonList',
@@ -14,64 +14,63 @@ const meta: Meta<typeof PresetButtonList> = {
 export default meta;
 type Story = StoryObj<typeof PresetButtonList>;
 
-const samplePresets = [
-  {
-    name: 'Preset 1',
-    onDelete: action('onDelete'),
-    onEditName: action('onEditName'),
-    setPreset: action('setPreset'),
-    currentPreset: '',
-  },
-  {
-    name: 'Preset 2',
-    onDelete: action('onDelete'),
-    onEditName: action('onEditName'),
-    setPreset: action('setPreset'),
-    currentPreset: '',
-  },
-  {
-    name: 'Preset 3',
-    onDelete: action('onDelete'),
-    onEditName: action('onEditName'),
-    setPreset: action('setPreset'),
-    currentPreset: '',
-  },
-];
+const samplePresets = {
+  presets: [
+    {
+      id: '1',
+      name: 'Preset 1',
+      people: [],
+    },
+    {
+      id: '2',
+      name: 'Preset 2',
+      people: [],
+    },
+    {
+      id: '3',
+      name: 'Preset 3',
+      people: [],
+    },
+  ],
+  currentPreset: '',
+  deletePreset: action('deletePreset'),
+  editPresetName: action('editPresetName'),
+  setCurrentPreset: action('setCurrentPreset'),
+  addPreset: action('addPreset'),
+};
 
 export const Default: Story = {
-  args: {
-    presetButtonList: samplePresets,
-    onAdd: action('onAdd'),
-  },
+  args: { ...samplePresets },
 };
 
 export const WithActivePreset: Story = {
   args: {
-    presetButtonList: samplePresets.map((preset) =>
-      preset.name === 'Preset 2' ? { ...preset, currentPreset: 'Preset 2' } : preset,
-    ),
-    onAdd: action('onAdd'),
+    ...samplePresets,
+    currentPreset: 'Preset 2',
   },
 };
 
 export const Empty: Story = {
   args: {
-    presetButtonList: [],
-    onAdd: action('onAdd'),
+    ...samplePresets,
+    presets: [],
   },
 };
 
 export const WithoutAddButton: Story = {
   args: {
-    presetButtonList: samplePresets,
+    ...samplePresets,
+    addPreset: undefined,
   },
 };
 
 export const ReadOnly: Story = {
   args: {
-    presetButtonList: samplePresets.map((preset) => ({
-      name: preset.name,
-      currentPreset: preset.name === 'Preset 1' ? preset.name : '',
-    })),
+    presets: samplePresets.presets,
+    currentPreset: 'Preset 1',
+    deletePreset: undefined,
+    editPresetName: undefined,
+    setCurrentPreset: undefined,
+    addPreset: undefined,
   },
 };
