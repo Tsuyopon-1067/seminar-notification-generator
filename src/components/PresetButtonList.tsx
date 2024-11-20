@@ -24,10 +24,10 @@ export const PresetButtonList = (presets: usePresetType) => {
         <button
           onClick={presets.addPreset}
           className="mt-2 h-10 border-2 border-dashed border-gray-300 rounded-lg
-                   hover:border-blue-500 hover:bg-blue-50 transition-all duration-200
+                   hover:border-green-400 hover:bg-gray-100 transition-all duration-200
                    flex items-center justify-center group"
         >
-          <span className="text-2xl text-gray-400 group-hover:text-blue-500 transition-colors">
+          <span className="text-2xl text-gray-400 group-hover:text-green-400 transition-colors">
             ＋
           </span>
         </button>
