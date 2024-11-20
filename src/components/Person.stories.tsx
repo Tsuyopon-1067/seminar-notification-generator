@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Person } from './Person';
 
 const meta: Meta<typeof Person> = {
-  title: 'Components/NameItem',
+  title: 'Components/Person',
   component: Person,
   parameters: {
     layout: 'centered',
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof Person>;
 
 export const Default: Story = {
   args: {
-    name: 'Example Name',
+    name: 'Example Person',
     url: 'https://example.com',
     onEdit: action('onEdit'),
     onDelete: action('onDelete'),
