@@ -32,15 +32,13 @@ export const PresetButton = ({
   if (isEditing) {
     return (
       <div className="flex items-center gap-2">
-        {onDelete && (
-          <button
-            className="w-6 h-6 flex-shrink-0 text-xs bg-red-500 rounded-full text-white hover:bg-red-600 transition-all flex items-center justify-center shadow-sm hover:shadow-md"
-            onClick={onDelete}
-            title="Delete"
-          >
-            ×
-          </button>
-        )}
+        <button
+          className="w-6 h-6 flex-shrink-0 text-xs bg-gray-400 rounded-full text-white hover:bg-gray-500 transition-all flex items-center justify-center shadow-sm hover:shadow-md"
+          onClick={() => setIsEditing(false)}
+          title="Cancel"
+        >
+          ×
+        </button>
         <input
           type="text"
           value={editedName}
@@ -55,13 +53,15 @@ export const PresetButton = ({
         >
           ✓
         </button>
-        <button
-          className="w-6 h-6 flex-shrink-0 text-xs bg-gray-400 rounded-full text-white hover:bg-gray-500 transition-all flex items-center justify-center shadow-sm hover:shadow-md"
-          onClick={() => setIsEditing(false)}
-          title="Cancel"
-        >
-          ×
-        </button>
+        {onDelete && (
+          <button
+            className="w-6 h-6 flex-shrink-0 text-xs bg-red-500 rounded-full text-white hover:bg-red-600 transition-all flex items-center justify-center shadow-sm hover:shadow-md"
+            onClick={onDelete}
+            title="Delete"
+          >
+            ×
+          </button>
+        )}
       </div>
     );
   }
