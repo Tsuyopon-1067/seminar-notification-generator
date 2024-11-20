@@ -25,7 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <header className={'bg-green-400 p-2'}>
+          <span className={'text-xl text-white font-bold ml-3'}>
+            Seminar Notification Generator
+          </span>
+        </header>
+        {children}
+        <footer className={'bg-green-400 p-2 mt-4'}>
+          <span className={'text-xs text-white ml-2'}>© 2024 Tsuyopon-1067</span>
+        </footer>
+      </body>
     </html>
   );
 }
