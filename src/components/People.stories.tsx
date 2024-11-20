@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { NameList } from './NameList';
 import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react';
+import { People } from './People';
 
-const meta: Meta<typeof NameList> = {
+const meta: Meta<typeof People> = {
   title: 'Components/NameList',
-  component: NameList,
+  component: People,
   parameters: {
     layout: 'centered',
   },
@@ -12,7 +12,7 @@ const meta: Meta<typeof NameList> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof NameList>;
+type Story = StoryObj<typeof People>;
 
 const sampleItems = [
   {

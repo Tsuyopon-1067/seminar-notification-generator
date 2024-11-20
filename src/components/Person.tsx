@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export type NameItemProps = {
+export type PersonProps = {
   name: string;
   onEdit: (name: string) => void;
   onDelete: () => void;
@@ -8,7 +8,7 @@ export type NameItemProps = {
   onUrlChange: (url: string) => void;
 };
 
-export const NameItem = ({ name, onEdit, onDelete, url, onUrlChange }: NameItemProps) => {
+export const Person = ({ name, onEdit, onDelete, url, onUrlChange }: PersonProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(name);
   const [editedUrl, setEditedUrl] = useState(url);

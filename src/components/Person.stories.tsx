@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { NameItem } from './NameItem';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Person } from './Person';
 
-const meta: Meta<typeof NameItem> = {
+const meta: Meta<typeof Person> = {
   title: 'Components/NameItem',
-  component: NameItem,
+  component: Person,
   parameters: {
     layout: 'centered',
   },
@@ -12,7 +12,7 @@ const meta: Meta<typeof NameItem> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof NameItem>;
+type Story = StoryObj<typeof Person>;
 
 export const Default: Story = {
   args: {
