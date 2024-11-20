@@ -71,7 +71,7 @@ export const Person = ({ name, onEdit, onDelete, url, onUrlChange }: PersonProps
   return (
     <div className="flex items-center gap-3 p-2 w-full">
       <button
-        className="w-6 h-6 flex-shrink-0 text-xs bg-blue-500..."
+        className="w-6 h-6 flex-shrink-0 text-xs bg-green-400 rounded-full text-white hover:bg-green-500 transition-all flex items-center justify-center shadow-sm hover:shadow-md"
         onClick={() => setIsEditing(true)}
         title="Edit"
       >

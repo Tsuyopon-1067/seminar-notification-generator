@@ -40,7 +40,7 @@ export const TimeInput = ({ hour, minute, onHourChange, onMinuteChange }: TimeIn
         開始時間
         <div className="flex flex-col items-center gap-1">
           <button
-            className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
+            className="w-8 h-8 bg-green-400 text-gray-100 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
             onClick={() => adjustHour(1)}
           >
             ▲
@@ -52,7 +52,7 @@ export const TimeInput = ({ hour, minute, onHourChange, onMinuteChange }: TimeIn
             className="w-12 text-center border rounded-md py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
-            className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
+            className="w-8 h-8 bg-green-400 text-gray-100 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
             onClick={() => adjustHour(-1)}
           >
             ▼
@@ -61,7 +61,7 @@ export const TimeInput = ({ hour, minute, onHourChange, onMinuteChange }: TimeIn
         <span className="text-xl font-bold">:</span>
         <div className="flex flex-col items-center gap-1">
           <button
-            className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
+            className="w-8 h-8 bg-green-400 text-gray-100 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
             onClick={() => adjustMinute(1)}
           >
             ▲
@@ -73,7 +73,7 @@ export const TimeInput = ({ hour, minute, onHourChange, onMinuteChange }: TimeIn
             className="w-12 text-center border rounded-md py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
-            className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
+            className="w-8 h-8 bg-green-400 text-gray-100 rounded-full hover:bg-gray-300 transition-colors flex items-center justify-center"
             onClick={() => adjustMinute(-1)}
           >
             ▼

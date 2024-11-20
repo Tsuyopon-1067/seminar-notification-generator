@@ -69,7 +69,7 @@ export const PresetButton = ({
   return (
     <div className="flex items-center gap-2">
       <button
-        className="w-6 h-6 flex-shrink-0 text-xs bg-blue-500 rounded-full text-white hover:bg-blue-600 transition-all flex items-center justify-center shadow-sm hover:shadow-md"
+        className="w-6 h-6 flex-shrink-0 text-xs bg-green-400 rounded-full text-white hover:bg-green-500 transition-all flex items-center justify-center shadow-sm hover:shadow-md"
         onClick={() => setIsEditing(true)}
         title="Edit"
       >
