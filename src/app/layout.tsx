@@ -32,6 +32,9 @@ export default function RootLayout({
           </span>
         </header>
         {children}
+        <footer className={'bg-green-400 p-2 mt-4'}>
+          <span className={'text-xs text-white ml-2'}>© 2024 Tsuyopon-1067</span>
+        </footer>
       </body>
     </html>
   );
