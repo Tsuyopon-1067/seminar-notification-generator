@@ -33,12 +33,14 @@ export const useNotificationGenerator = ({
   const generate = () => {
     const TEMPLATE_TIME = 'TIME';
     const TEMPLATE_PEOPLE = 'PEOPLE';
+    const TEMPLATE_MINUTE = 'MINUTE';
     const timeStr = ` *${hour.toString()}:${minute.toString().padStart(2, '0')}* `;
     const people = presets.presets.find((p) => p.id === presets.currentPreset)?.people;
     const peopleText = people?.map((p) => `* ${p.name}: ${p.url}`).join('\n');
     const result = template
       .replace(TEMPLATE_TIME, timeStr)
-      .replace(TEMPLATE_PEOPLE, peopleText || '');
+      .replace(TEMPLATE_PEOPLE, peopleText || '')
+      .replace(TEMPLATE_MINUTE, seminarMinute || '');
     setGeneratedText(result);
     console.log(result);
     return result;
