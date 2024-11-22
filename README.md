@@ -2,6 +2,9 @@
 
 ![title](./doc/img/title.webp 'title')
 
+## Depoyment
+https://tsuyopon-1067.github.io/seminar-notification-generator/
+
 ## Environment
 
 - Node.js v20.17.0
