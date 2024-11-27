@@ -1,6 +1,7 @@
 'use client';
 
 import { GreenButton } from '@/components/GreenButton';
+import { ImportExport } from '@/components/ImportExport';
 import { People } from '@/components/People';
 import { PresetButtonList } from '@/components/PresetButtonList';
 import { TextArea } from '@/components/TextArea';
@@ -11,7 +12,7 @@ import { Presets, usePresets } from '@/hooks/usePresets';
 import { useTime } from '@/hooks/useTime';
 import { useState } from 'react';
 
-type StoredData = {
+export type StoredData = {
   presets: Presets;
   hour: number;
   minute: number;
@@ -46,6 +47,7 @@ export default function Home() {
     const seminarMinute = notificationGenerator.seminarMinute;
     storedData.setValue({ presets: presetsData, hour, minute, template, seminarMinute });
   };
+
   const [settings, setSettings] = useState('');
   const applySettings = () => {
     const data = JSON.parse(settings) as StoredData;
@@ -62,15 +64,7 @@ export default function Home() {
       behavior: 'smooth',
     });
   };
-  const copySettings = () => {
-    const data = localStorage.getItem(KEY);
-    if (data) {
-      const formattedData = JSON.stringify(JSON.parse(data), null, 2);
-      navigator.clipboard.writeText(formattedData).then(() => {
-        alert('Copied to clipboard!');
-      });
-    }
-  };
+
   return (
     <div className="container mx-auto px-4">
       <div className="flex gap-3 mx-auto">
@@ -121,26 +115,12 @@ export default function Home() {
         setText={notificationGenerator.setGeneratedText}
         placeholder="Generated text will be shown here..."
       />
-      <h2 className={'text-gray-500 text-2xl mt-8'}>Import / Export</h2>
-      <TextArea
-        id="importExport"
-        rows={16}
-        value={settings}
-        setText={setSettings}
-        placeholder="Write JSON text here..."
+      <ImportExport
+        applySettings={applySettings}
+        LOCALSTORAGE_KEY={KEY}
+        settings={settings}
+        setSettings={setSettings}
       />
-      <div className={'flex m-2 gap-4'}>
-        <div className={'flex-1'}>
-          <GreenButton onClick={applySettings}>
-            <span>Import Settings</span>
-          </GreenButton>
-        </div>
-        <div className={'flex-1'}>
-          <GreenButton onClick={copySettings}>
-            <span>Export Current Settings to Clip Board</span>
-          </GreenButton>
-        </div>
-      </div>
     </div>
   );
 }
