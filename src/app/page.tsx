@@ -3,6 +3,7 @@
 import { GreenButton } from '@/components/GreenButton';
 import { People } from '@/components/People';
 import { PresetButtonList } from '@/components/PresetButtonList';
+import { TextArea } from '@/components/TextArea';
 import { TimeInput } from '@/components/TimeInput';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useNotificationGenerator } from '@/hooks/useNotificationGenerator';
@@ -81,20 +82,18 @@ export default function Home() {
         </div>
       </div>
       <TimeInput {...time} />
-      <textarea
+      <TextArea
         id="minute"
         rows={2}
         value={notificationGenerator.seminarMinute}
-        onChange={(e) => notificationGenerator.setSeminarMinute(e.target.value)}
-        className="block p-2.5 m-2 mt-4 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        setText={notificationGenerator.setSeminarMinute}
         placeholder="Write seminar minute url here..."
       />
-      <textarea
+      <TextArea
         id="template"
-        rows={16}
+        rows={12}
         value={notificationGenerator.template}
-        onChange={(e) => notificationGenerator.setTemplate(e.target.value)}
-        className="block p-2.5 m-2 mt-4 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        setText={(e) => notificationGenerator.setTemplate}
         placeholder="Write template here..."
       />
       <div className={'flex m-2 gap-4'}>
@@ -115,21 +114,19 @@ export default function Home() {
         </div>
       </div>
       <h2 className={'text-gray-500 text-2xl mt-8'}>Output</h2>
-      <textarea
+      <TextArea
         id="result"
         rows={16}
         value={notificationGenerator.generatedText}
-        onChange={(e) => notificationGenerator.setGeneratedText(e.target.value)}
-        className="block p-2.5 my-2 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        setText={notificationGenerator.setGeneratedText}
         placeholder="Generated text will be shown here..."
       />
       <h2 className={'text-gray-500 text-2xl mt-8'}>Import / Export</h2>
-      <textarea
+      <TextArea
         id="importExport"
         rows={16}
         value={settings}
-        onChange={(e) => setSettings(e.target.value)}
-        className="block p-2.5 my-2 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        setText={setSettings}
         placeholder="Write JSON text here..."
       />
       <div className={'flex m-2 gap-4'}>
