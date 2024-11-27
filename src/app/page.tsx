@@ -34,7 +34,7 @@ export default function Home() {
     presets,
     hour: time.hour,
     minute: time.minute,
-    initialTemplate: '',
+    initialTemplate: storedData.storedValue.template,
     initialMinute: '',
   });
   const handleSave = () => {
@@ -125,7 +125,7 @@ export default function Home() {
       />
       <h2 className={'text-gray-500 text-2xl mt-8'}>Import / Export</h2>
       <textarea
-        id="result"
+        id="importExport"
         rows={16}
         value={settings}
         onChange={(e) => setSettings(e.target.value)}
