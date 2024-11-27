@@ -11,7 +11,7 @@ export type PersonProps = {
 };
 
 export const Person = ({ name, onEdit, onDelete, url, onUrlChange }: PersonProps) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(name === '');
   const [editedName, setEditedName] = useState(name);
 
   const handleSubmit = () => {
