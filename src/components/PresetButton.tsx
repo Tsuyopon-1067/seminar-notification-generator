@@ -17,7 +17,7 @@ export const PresetButton = ({
   setPreset,
   currentPreset,
 }: PresetButtonProps) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(name === '');
   const [editedName, setEditedName] = useState(name);
 
   const handleEditSubmit = () => {

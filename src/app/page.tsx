@@ -1,8 +1,10 @@
 'use client';
 
 import { GreenButton } from '@/components/GreenButton';
+import { ImportExport } from '@/components/ImportExport';
 import { People } from '@/components/People';
 import { PresetButtonList } from '@/components/PresetButtonList';
+import { TextArea } from '@/components/TextArea';
 import { TimeInput } from '@/components/TimeInput';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useNotificationGenerator } from '@/hooks/useNotificationGenerator';
@@ -10,7 +12,7 @@ import { Presets, usePresets } from '@/hooks/usePresets';
 import { useTime } from '@/hooks/useTime';
 import { useState } from 'react';
 
-type StoredData = {
+export type StoredData = {
   presets: Presets;
   hour: number;
   minute: number;
@@ -34,7 +36,7 @@ export default function Home() {
     presets,
     hour: time.hour,
     minute: time.minute,
-    initialTemplate: '',
+    initialTemplate: storedData.storedValue.template,
     initialMinute: '',
   });
   const handleSave = () => {
@@ -45,6 +47,7 @@ export default function Home() {
     const seminarMinute = notificationGenerator.seminarMinute;
     storedData.setValue({ presets: presetsData, hour, minute, template, seminarMinute });
   };
+
   const [settings, setSettings] = useState('');
   const applySettings = () => {
     const data = JSON.parse(settings) as StoredData;
@@ -61,15 +64,7 @@ export default function Home() {
       behavior: 'smooth',
     });
   };
-  const copySettings = () => {
-    const data = localStorage.getItem(KEY);
-    if (data) {
-      const formattedData = JSON.stringify(JSON.parse(data), null, 2);
-      navigator.clipboard.writeText(formattedData).then(() => {
-        alert('Copied to clipboard!');
-      });
-    }
-  };
+
   return (
     <div className="container mx-auto px-4">
       <div className="flex gap-3 mx-auto">
@@ -81,20 +76,18 @@ export default function Home() {
         </div>
       </div>
       <TimeInput {...time} />
-      <textarea
+      <TextArea
         id="minute"
         rows={2}
         value={notificationGenerator.seminarMinute}
-        onChange={(e) => notificationGenerator.setSeminarMinute(e.target.value)}
-        className="block p-2.5 m-2 mt-4 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        setText={notificationGenerator.setSeminarMinute}
         placeholder="Write seminar minute url here..."
       />
-      <textarea
+      <TextArea
         id="template"
-        rows={16}
+        rows={12}
         value={notificationGenerator.template}
-        onChange={(e) => notificationGenerator.setTemplate(e.target.value)}
-        className="block p-2.5 m-2 mt-4 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        setText={(e) => notificationGenerator.setTemplate}
         placeholder="Write template here..."
       />
       <div className={'flex m-2 gap-4'}>
@@ -115,35 +108,19 @@ export default function Home() {
         </div>
       </div>
       <h2 className={'text-gray-500 text-2xl mt-8'}>Output</h2>
-      <textarea
+      <TextArea
         id="result"
         rows={16}
         value={notificationGenerator.generatedText}
-        onChange={(e) => notificationGenerator.setGeneratedText(e.target.value)}
-        className="block p-2.5 my-2 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        setText={notificationGenerator.setGeneratedText}
         placeholder="Generated text will be shown here..."
       />
-      <h2 className={'text-gray-500 text-2xl mt-8'}>Import / Export</h2>
-      <textarea
-        id="result"
-        rows={16}
-        value={settings}
-        onChange={(e) => setSettings(e.target.value)}
-        className="block p-2.5 my-2 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Write JSON text here..."
+      <ImportExport
+        applySettings={applySettings}
+        LOCALSTORAGE_KEY={KEY}
+        settings={settings}
+        setSettings={setSettings}
       />
-      <div className={'flex m-2 gap-4'}>
-        <div className={'flex-1'}>
-          <GreenButton onClick={applySettings}>
-            <span>Import Settings</span>
-          </GreenButton>
-        </div>
-        <div className={'flex-1'}>
-          <GreenButton onClick={copySettings}>
-            <span>Export Current Settings to Clip Board</span>
-          </GreenButton>
-        </div>
-      </div>
     </div>
   );
 }
